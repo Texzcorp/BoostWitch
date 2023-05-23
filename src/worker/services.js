@@ -29,7 +29,7 @@ export class TwitchServices {
     // Api has 100 items return limit.
     // We are getting the full data chunk by chunk size of 100:
     do {
-      const response = await tw.apiRequest('https://api.twitch.tv/helix/streams', `user_id=${id}&first=100&after=${paginationKey}&type=live`);
+      const response = await tw.apiRequest('https://api.twitch.tv/helix/streams', `user_id=${id}&first=100&after=${paginationKey}&type`);
       const followingsDataChunk = response.data;
 
       if (general.isEmpty(followingsDataChunk)) {
