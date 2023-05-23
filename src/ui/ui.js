@@ -4,7 +4,7 @@
 
 // Navigation:
 (() => {
-  const SYSTEM_PAGES = new Set(['#setup', '#spy', '#watch', '#about']);
+  const SYSTEM_PAGES = new Set(['#setup', '#boost', '#watch', '#about']);
   const DEFAULT_PAGE = '#setup';
 
   let activePageElement = null;
@@ -104,7 +104,7 @@
       const { spy } = await import('../worker/spy.js');
       spy(currSpyStatus);
     } catch (error) {
-      console.error('Failed to import "spy" module.');
+      console.error('Failed to import "boost" module.');
     }
   };
 
