@@ -104,7 +104,7 @@ export class TwitchServices {
     return { ids, names };
   }
 
-  async getFollowers(ids = []) {
+  async getFollowings(ids = []) {
     let channels = [];
 
     // Load one by one:
