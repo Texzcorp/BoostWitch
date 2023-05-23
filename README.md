@@ -1,14 +1,14 @@
-## SpyWitch
+## BoostWitch
 
 ### An open source tool to track users' chat messages on Twitch.tv
 
-### -> https://shaanaliyev.github.io/spywitch
+### -> https://texzcorp.github.io/BoostWitch/
 
 ---
 
 ### Questions:
 **What is it?**
- - It is a tool that allows you to track users' chat messages on Twitch.tv.
+ - It is a tool that allows you to boost your account on Twitch.tv.
 
 **Why?**
  - When doing channel moderation, there may be situations where it is necessary to monitor users/chat participants not only within the channel, but also across the platform.
