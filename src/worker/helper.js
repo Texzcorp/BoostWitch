@@ -58,7 +58,7 @@ export const user = {
 // Input
 export const input = {
   getInputElements: () => {
-    const categoryNamesElement = document.getElementById('categoryNames');
+    const categoryNamesElement = document.getElementById('category-names');
     return { categoryNamesElement };
   },
 
