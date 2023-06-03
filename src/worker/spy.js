@@ -49,12 +49,11 @@ const spyStart = async () => {
     location.href = '#setup';
     return;
   }
-  ui.logStatus(areInputsValid());
+
   if (areInputsValid() === false) return;
 
   ui.activateSpyButton();
-  ui.logStatus('clicked . . .');
-  
+
   const { start } = await import('./script.js');
   start(getInputs());
 };
