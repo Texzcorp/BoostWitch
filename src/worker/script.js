@@ -11,7 +11,7 @@ export const start = async (data) => {
   isOff = false;
 
   try {
-    const { usernames, channels } = data;
+    const { categoryNames, channels } = data;
     const mode = general.getSearchMode();
 
     const services = new TwitchServices();
@@ -28,7 +28,7 @@ export const start = async (data) => {
         // step 1:
         general.stopIf(isOff);
         ui.logStatus('Getting users data . . .');
-        const usersData = await services.getProfilesInfo(usernames);
+        const usersData = await services.getProfilesInfo(categoryNames);
 
         // step 2:
         general.stopIf(isOff);
@@ -51,7 +51,7 @@ export const start = async (data) => {
       case 'manual': {
         general.stopIf(isOff);
         ui.logStatus('Getting users data . . .');
-        const usersData = await services.getProfilesInfo(usernames);
+        const usersData = await services.getProfilesInfo(categoryNames);
 
         general.stopIf(isOff);
         ui.logStatus('Getting channels data . . .');
