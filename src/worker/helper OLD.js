@@ -58,11 +58,12 @@ export const user = {
 // Input
 export const input = {
   getInputElements: () => {
-    const categoryNamesElement = document.getElementById('category-names');
-    return { categoryNamesElement };
+    const usernamesElement = document.getElementById('usernames');
+    const channelsElement = document.getElementById('channels');
+    return { usernamesElement, channelsElement };
   },
 
-  getSanitizedData: (categoryNames) => {
+  getSanitizedData: (usernames, channels) => {
     const sanitize = (inputData) => {
       const values = inputData
         .toLowerCase()
@@ -74,7 +75,8 @@ export const input = {
     };
 
     return {
-      categoryNames: sanitize(categoryNames),
+      usernames: sanitize(usernames),
+      channels: sanitize(channels),
     };
   },
 };
@@ -290,9 +292,9 @@ export const tw = {
     throw Error(`${response.error} - ${response.message}`);
   },
 
-  buildQuery: (categoryNames = [], queryString) => {
+  buildQuery: (usernames = [], queryString) => {
     const params = new URLSearchParams();
-    categoryNames.forEach((categoryName) => params.append(queryString, categoryName));
+    usernames.forEach((username) => params.append(queryString, username));
     return params.toString();
   },
 
