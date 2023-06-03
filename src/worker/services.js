@@ -7,8 +7,18 @@ export class TwitchServices {
   async #streamersInCategory(categoryNames = []) {
     const result = [];
 
+<<<<<<< HEAD
     for (let i = 0; i < categoryNames.length; i++) {
       const response = await tw.apiRequest('https://api.twitch.tv/helix/streams', `game=${encodeURIComponent(categoryNames[i])}&first=100`);
+=======
+    let active = true;
+    let paginationKey = '';
+    // Api has 100 items return limit.
+    // We are getting the full data chunk by chunk size of 100:
+    do {
+      const response = await tw.apiRequest('https://api.twitch.tv/helix/streams', `user_id=${id}&first=100&after=${paginationKey}`);
+      const followingsDataChunk = response.data;
+>>>>>>> parent of ea691d8 (zzadazef)
 
       const streamersData = response.data;
 
