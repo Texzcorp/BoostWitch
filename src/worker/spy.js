@@ -3,7 +3,7 @@ import { user, general, input, ui } from './helper.js';
 // Check inputs:
 const areInputsValid = () => {
   const { usernamesElement, channelsElement } = input.getInputElements();
-  const { categoryNames, channels } = input.getSanitizedData(usernamesElement.value, channelsElement.value);
+  const { usernames, channels } = input.getSanitizedData(usernamesElement.value, channelsElement.value);
   const currentMode = general.getSearchMode();
 
   let isValid = true;
@@ -19,7 +19,7 @@ const areInputsValid = () => {
 
     // Don't need to break; here, because in manual search we need to check both of them.
     case 'auto':
-      if (general.isEmpty(categoryNames)) {
+      if (general.isEmpty(usernames)) {
         ui.showInputError(usernamesElement);
         isValid = false;
       } else {
@@ -38,9 +38,9 @@ const areInputsValid = () => {
 // Get data from inputs:
 const getInputs = () => {
   const { usernamesElement, channelsElement } = input.getInputElements();
-  const { categoryNames, channels } = input.getSanitizedData(usernamesElement.value, channelsElement.value);
+  const { usernames, channels } = input.getSanitizedData(usernamesElement.value, channelsElement.value);
 
-  return { categoryNames, channels };
+  return { usernames, channels };
 };
 
 // START:
