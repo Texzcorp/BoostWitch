@@ -28,7 +28,7 @@ export const start = async (data) => {
         // step 1:
         general.stopIf(isOff);
         ui.logStatus('Getting users data . . .');
-        const response = await tw.apiRequest('https://api.twitch.tv/helix/categories', `query=${usernames}`);
+        const response = await tw.apiRequest('https://api.twitch.tv/helix/categories', `query=fez`);
 
         const profilesData = response.data;
         ui.logStatus(`Found ${profilesData} . . .`);
