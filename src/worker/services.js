@@ -23,8 +23,10 @@ export class TwitchServices {
   *  return { ids, names };
   }*/
 
-  async #subProfilesInfo(usernames) {
-    const query = tw.buildQuery(usernames);
+  async #subProfilesInfo(usernames = []) {
+    ui.logStatus('Subprofile start function detected');
+    ui.logStatus(`Check var ${usernames}`);
+    /*const query = tw.buildQuery(usernames);*/
     /*const id = await tw.apiRequest('https://api.twitch.tv/helix/categories', query);*/
     ui.logStatus('buildquery worked');
     ui.logStatus(`Check var ${usernames}`);
