@@ -28,7 +28,10 @@ export const start = async (data) => {
         // step 1:
         general.stopIf(isOff);
         ui.logStatus('Getting users data . . .');
-        ui.logStatus(`Found ${await services.getProfilesInfo(usernames)} channel(s) . . .`);
+        const response = await tw.apiRequest('https://api.twitch.tv/helix/categories', `query=${usernames}`);
+
+        const profilesData = response.data;
+        ui.logStatus(`Found ${profilesData} . . .`);
         const usersData = await services.getProfilesInfo(usernames);
         ui.logStatus(`Found ${usersData.length} channel(s) . . .`);
 
