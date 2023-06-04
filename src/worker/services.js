@@ -24,7 +24,7 @@ export class TwitchServices {
   }*/
 
   async #subProfilesInfo(usernames = []) {
-    /*const query = tw.buildQuery(usernames);*/
+    const query = tw.buildQuery(usernames);
     /*const id = await tw.apiRequest('https://api.twitch.tv/helix/categories', query);*/
     const response = await tw.apiRequest('https://api.twitch.tv/helix/search/categories', `query=${usernames}`);
 
@@ -113,6 +113,7 @@ export class TwitchServices {
 
     // Load data chunk by chunk:
     for (let i = 0; i < usernames.length; i++) {
+      ui.logStatus('for (let) worked');
       const subResult = await this.#subProfilesInfo(usernames[i]);
 
       ui.logStatus('Subprofiles info');

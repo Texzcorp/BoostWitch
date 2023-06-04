@@ -30,7 +30,7 @@ export const start = async (data) => {
         ui.logStatus('Getting users data . . .');
         ui.logStatus(`Found usernames : ${usernames} . . .`);
         const usersData = await services.getProfilesInfo(usernames);
-        ui.logStatus(`Found ${usersData.length} channel(s) . . .`);
+        /*ui.logStatus(`Found ${usersData.length} channel(s) . . .`);*/
 
         // step 2:
         general.stopIf(isOff);
