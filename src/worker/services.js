@@ -36,7 +36,7 @@ export class TwitchServices {
 
     // I need these data separate. ids for next actions, names for UI.
     const ids = profilesData.map((profile) => profile.id);
-    const names = profilesData.map((profile) => profile.login);
+    const names = profilesData.map((profile) => profile.name);
 
     return { ids, names };
   }
@@ -58,8 +58,8 @@ export class TwitchServices {
       }
 
       // Save current chunk of received data:
-      followingsDataChunk.forEach((channel) => {
-        if (channel.to_login) result.push(channel.to_login);
+      followingsDataChunk.forEach((stream) => {
+        if (stream.user_name) result.push(stream.user_name);
       });
 
       // Is there any more data?
