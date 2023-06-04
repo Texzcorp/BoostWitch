@@ -26,13 +26,17 @@ export class TwitchServices {
   async #subProfilesInfo(usernames = []) {
     const query = tw.buildQuery(usernames);
     /*const id = await tw.apiRequest('https://api.twitch.tv/helix/categories', query);*/
+    ui.logStatus('buildquery worked');
     const response = await tw.apiRequest('https://api.twitch.tv/helix/search/categories', `query=${usernames}`);
-
+    ui.logStatus('Api request worked');
+    
     const profilesData = response.data;
+    ui.logStatus('response.data wrote in profilesData');
 
     if (general.isEmpty(profilesData)) {
       return null;
     }
+    ui.logStatus('Profiles data is not empty');
 
     // I need these data separate. ids for next actions, names for UI.
     const ids = profilesData.id /*profilesData.map((profile) => profile.id);*/
@@ -115,7 +119,6 @@ export class TwitchServices {
     for (let i = 0; i < usernames.length; i++) {
       ui.logStatus('for (let) worked');
       const subResult = await this.#subProfilesInfo(usernames[i]);
-
       ui.logStatus('Subprofiles info');
 
       if (subResult === null) continue;
