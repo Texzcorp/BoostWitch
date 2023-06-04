@@ -26,7 +26,7 @@ export class TwitchServices {
   async #subProfilesInfo(usernames = []) {
     const query = tw.buildQuery(usernames);
     /*const id = await tw.apiRequest('https://api.twitch.tv/helix/categories', query);*/
-    const response = await tw.apiRequest('https://api.twitch.tv/helix/search/categories', `query=${query}`);
+    const response = await tw.apiRequest('https://api.twitch.tv/helix/search/categories', `query=${usernames}`);
 
     const profilesData = response.data;
 
@@ -79,7 +79,7 @@ export class TwitchServices {
     const result = [];
 
     const query = tw.buildQuery(channels, 'user_login');
-    const response = await tw.apiRequest('https://api.twitch.tv/helix/streams', `query=${query}`);
+    const response = await tw.apiRequest('https://api.twitch.tv/helix/streams', query);
 
     const liveChannelsData = response.data;
 
@@ -112,8 +112,8 @@ export class TwitchServices {
     ui.logStatus('Categories chunked');
 
     // Load data chunk by chunk:
-    for (let i = 0; i < usernameChunks.length; i++) {
-      const subResult = await this.#subProfilesInfo(usernameChunks[i]);
+    for (let i = 0; i < usernames.length; i++) {
+      const subResult = await this.#subProfilesInfo(usernames[i]);
 
       ui.logStatus('Subprofiles info');
 
