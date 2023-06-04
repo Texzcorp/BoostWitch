@@ -73,7 +73,7 @@ export const input = {
 
       return [...new Set(values)];
     };
-    ui.logStatus(`Found ${usernames} . . .`);
+    ui.logStatus(`Sanitize : ${usernames} . . .`);
     return {
       usernames: sanitize(usernames),
       channels: sanitize(channels),
