@@ -24,7 +24,7 @@ export class TwitchServices {
   }*/
 
   async #subProfilesInfo(usernames = []) {
-    const query = tw.buildQuery(usernames, 'name');
+    const query = tw.buildQuery(usernames, 'query');
     const id = await tw.apiRequest('https://api.twitch.tv/helix/categories', query);
 
     const profilesData = response.data;
