@@ -35,8 +35,8 @@ export class TwitchServices {
     }
 
     // I need these data separate. ids for next actions, names for UI.
-    const ids = profilesData.map((profile) => profile.id);
-    const names = profilesData.map((profile) => profile.name);
+    const ids = profilesData.id /*profilesData.map((profile) => profile.id);*/
+    const names = profilesData.name /*profilesData.map((profile) => profile.name);*/
 
     return { ids, names };
   }
@@ -50,7 +50,7 @@ export class TwitchServices {
     // Api has 100 items return limit.
     // We are getting the full data chunk by chunk size of 100:
     do {
-      const response = await tw.apiRequest('https://api.twitch.tv/helix/streams', `game_id=${id}&first=100&after=${paginationKey}`)
+      const response = await tw.apiRequest('https://api.twitch.tv/helix/streams', `game_id=${id}`) /*&first=100&after=${paginationKey}*/
       const followingsDataChunk = response.data;
 
       if (general.isEmpty(followingsDataChunk)) {
