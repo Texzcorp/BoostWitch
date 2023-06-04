@@ -37,6 +37,8 @@ export class TwitchServices {
     // I need these data separate. ids for next actions, names for UI.
     const ids = profilesData.id /*profilesData.map((profile) => profile.id);*/
     const names = profilesData.name /*profilesData.map((profile) => profile.name);*/
+    ui.logStatus(`Found ids : ${ids} . . .`);
+    ui.logStatus(`Found names : ${names} . . .`);
 
     return { ids, names };
   }
