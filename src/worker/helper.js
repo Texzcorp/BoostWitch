@@ -65,7 +65,7 @@ export const input = {
 
   getSanitizedData: (usernames, channels) => {
     const sanitize = (inputData) => {
-      const values = inputData
+      const values = encodeURI(inputData)
         .toLowerCase()
         .trim()
         .split(/[\s,]+/)
@@ -73,7 +73,7 @@ export const input = {
 
       return [...new Set(values)];
     };
-
+    ui.logStatus(`Found ${usernames} . . .`);
     return {
       usernames: sanitize(usernames),
       channels: sanitize(channels),
