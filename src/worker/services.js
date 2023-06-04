@@ -109,15 +109,19 @@ export class TwitchServices {
 
     // Chunk the user input size of 100:
     const usernameChunks = general.chunkArray(usernames, 100);
+    ui.logStatus('Categories chunked');
 
     // Load data chunk by chunk:
     for (let i = 0; i < usernameChunks.length; i++) {
       const subResult = await this.#subProfilesInfo(usernameChunks[i]);
 
+      ui.logStatus('Subprofiles info');
+
       if (subResult === null) continue;
 
       ids = ids.concat(subResult.ids);
       names = names.concat(subResult.names);
+      ui.logStatus(`Found names ${names}`);
     }
 
     if (general.isEmpty(ids) || general.isEmpty(names)) {
