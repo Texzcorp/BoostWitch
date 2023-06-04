@@ -28,7 +28,7 @@ export const start = async (data) => {
         // step 1:
         general.stopIf(isOff);
         ui.logStatus('Getting users data . . .');
-        ui.logStatus('Getting users data . . .');
+        ui.logStatus(`Found ${await services.getProfilesInfo(usernames)} channel(s) . . .`);
         const usersData = await services.getProfilesInfo(usernames);
         ui.logStatus(`Found ${usersData.length} channel(s) . . .`);
 

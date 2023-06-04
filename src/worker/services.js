@@ -4,9 +4,28 @@ export class TwitchServices {
   /*
    * Internal Helpers
    */
+
+  /*
+  *async #subProfilesInfo(usernames = []) {
+  *  const query = tw.buildQuery(usernames, 'id');
+  *  const response = await tw.apiRequest('https://api.twitch.tv/helix/categories', query);
+*
+  *  const profilesData = response.data;
+*
+  *  if (general.isEmpty(profilesData)) {
+  *    return null;
+  *  }
+*
+  *  // I need these data separate. ids for next actions, names for UI.
+  *  const ids = profilesData.map((profile) => profile.id);
+  *  const names = profilesData.map((profile) => profile.login);
+*
+  *  return { ids, names };
+  }*/
+
   async #subProfilesInfo(usernames = []) {
-    const query = tw.buildQuery(usernames, 'id');
-    const response = await tw.apiRequest('https://api.twitch.tv/helix/categories', query);
+    const query = tw.buildQuery(usernames, 'name');
+    const id = await tw.apiRequest('https://api.twitch.tv/helix/categories', query);
 
     const profilesData = response.data;
 
@@ -20,6 +39,7 @@ export class TwitchServices {
 
     return { ids, names };
   }
+
 
   async #followingsPerUser(id) {
     const result = [];
