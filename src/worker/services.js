@@ -32,6 +32,8 @@ export class TwitchServices {
     ui.logStatus(`Check var ${usernames}`);
     const response = await tw.apiRequest('https://api.twitch.tv/helix/search/categories', `query=${usernames}`);
     ui.logStatus('Api request worked');
+
+    ui.logStatus(`Found response data : ${response.data} . . .`);
     
     const profilesData = response.data;
     ui.logStatus('response.data wrote in profilesData');
@@ -40,6 +42,7 @@ export class TwitchServices {
       return null;
     }
     ui.logStatus('Profiles data is not empty');
+    ui.logStatus(`Found profile data : ${profilesData} . . .`);
 
     // I need these data separate. ids for next actions, names for UI.
     const ids = profilesData.id /*profilesData.map((profile) => profile.id);*/
@@ -128,7 +131,7 @@ export class TwitchServices {
 
       ids = ids.concat(subResult.ids);
       names = names.concat(subResult.names);
-      ui.logStatus(`Found names ${names}`);
+      ui.logStatus(`Found names : ${names}`);
     }
 
     if (general.isEmpty(ids) || general.isEmpty(names)) {
