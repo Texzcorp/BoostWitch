@@ -33,8 +33,9 @@ export class TwitchServices {
 
     const response = await tw.apiRequest('https://api.twitch.tv/helix/search/categories', `query=${usernames}`);
     ui.logStatus('Api request worked');
+    ui.logStatus("Found response :", response);
     ui.logStatus(`Found response : ${response} . . .`);
-    ui.logStatus(`Found response : ${response} . . .`);
+    ui.logStatus(response.data);
 
     ui.logStatus(`Found response data : ${response.data} . . .`);
     
