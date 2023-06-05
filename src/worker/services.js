@@ -33,10 +33,13 @@ export class TwitchServices {
 
     const response = await tw.apiRequest('https://api.twitch.tv/helix/search/categories', `query=${usernames}`);
     ui.logStatus('Api request worked');
-    ui.logStatus("Found response :", response);
+    ui.logStatus(`Found response : ${JSON.stringify(response)}`);
     ui.logStatus(`Found response : ${response} . . .`);
-    ui.logStatus(response.data);
-
+    ui.logStatus(JSON.stringify(response.data));
+    let responsetocheck = response.data
+    for(let key in responsetocheck) {
+      ui.logStatus(`Found for loop keys : ${key} . . .`);
+    }
     ui.logStatus(`Found response data : ${response.data} . . .`);
     
     const profilesData = response.data;
