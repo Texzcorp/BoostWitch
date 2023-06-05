@@ -2,7 +2,7 @@
   // Required parameters for the Twitch Auth process
   const TwitchAuth = {
     clientId: '4mpnu0a4czk1twg2jbhj4cognrmy4d',
-    redirectUri: 'https://texzcorp.github.io', // to run locally change to: http://localhost
+    redirectUri: 'https://texzcorp.github.io/BoostWitch/', // to run locally change to: http://localhost
   };
 
   // Create URL for Twitch authorization and append required parameters
