@@ -30,8 +30,10 @@ export class TwitchServices {
     /*const id = await tw.apiRequest('https://api.twitch.tv/helix/categories', query);*/
     ui.logStatus('buildquery worked');
     ui.logStatus(`Check var ${usernames}`);
+
     const response = await tw.apiRequest('https://api.twitch.tv/helix/search/categories', `query=${usernames}`);
     ui.logStatus('Api request worked');
+    ui.logStatus(`Found response : ${response} . . .`);
     ui.logStatus(`Found response : ${response} . . .`);
 
     ui.logStatus(`Found response data : ${response.data} . . .`);
