@@ -32,19 +32,21 @@ export const start = async (data) => {
         const usersData = await services.getProfilesInfo(usernames);
         /*ui.logStatus(`Found ${usersData.length} channel(s) . . .`);*/
 
-        // step 2:
-        general.stopIf(isOff);
-        ui.logStatus('Getting followings . . .');
-        ui.blockSpyButton();
-        ui.logStatus('Spy button unlocked . . .');
-        const followings = await services.getFollowings(usersData.ids);
-        ui.logStatus(`Found ${followings.length} channel(s) . . .`);
+        //// step 2:
+        //general.stopIf(isOff);
+        //ui.logStatus('Getting followings . . .');
+        //ui.blockSpyButton();
+        //ui.logStatus('Spy button unlocked . . .');
+        //const followings = await services.getFollowings(usersData.ids);
+        //ui.logStatus(`Found ${followings.length} channel(s) . . .`);
 
         // step 3:
         general.stopIf(isOff);
         ui.logStatus('Picking live channels . . .');
-        const liveChannels = await services.getLiveChannels(followings);
+        const liveChannels = await services.getLiveChannels(usersData);
         ui.logStatus(`Found ${liveChannels.length} live channel(s) . . .`);
+
+        ui.logStatus(`Final list : ${liveChannels} . . .`);
 
         finalUsers = usersData.names;
         finalChannels = liveChannels;

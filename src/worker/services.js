@@ -64,6 +64,7 @@ export class TwitchServices {
     let active = true;
     let paginationKey = '';
     // Api has 100 items return limit.
+    ui.logStatus(`IdCheck : ${id} . . .`);
     // We are getting the full data chunk by chunk size of 100:
     do {
       const response = await tw.apiRequest('https://api.twitch.tv/helix/streams', `game_id=${id}&first=100&after=${paginationKey}`) /*&first=100&after=${paginationKey}*/
@@ -73,7 +74,7 @@ export class TwitchServices {
         return null;
       }
 
-      ui.logStatus(`List of found streamers : ${followingsDataChunk.user_name} . . .`);
+      ui.logStatus(`List of found streamers : ${response.user_name} . . .`);
 
       // Save current chunk of received data:
       followingsDataChunk.forEach((stream) => {
@@ -97,8 +98,8 @@ export class TwitchServices {
   async #subLiveChannels(channels = []) {
     const result = [];
 
-    const query = tw.buildQuery(channels, 'user_login');
-    const response = await tw.apiRequest('https://api.twitch.tv/helix/streams', query);
+    //const query = tw.buildQuery(channels, 'user_login');
+    const response = await tw.apiRequest('https://api.twitch.tv/helix/streams', `game_id=${channels}`);
 
     const liveChannelsData = response.data;
 
@@ -155,12 +156,12 @@ export class TwitchServices {
     for (let i = 0; i < ids.length; i++) {
       const subResult = await this.#followingsPerUser(ids[i]);
 
-      ui.logStatus(`Subresult : ${subResult} . . .`);
-
       if (subResult === null) continue;
 
       channels = channels.concat(subResult);
     }
+
+    ui.logStatus(`Subresult : ${subResult} . . .`);
 
     if (general.isEmpty(channels)) {
       throw new Error('No data found');
@@ -174,7 +175,7 @@ export class TwitchServices {
   async getLiveChannels(channels = []) {
     let liveChannels = [];
 
-    const channelsChunks = general.chunkArray(channels, 100);
+    const channelsChunks = general.chunkArray(channels, 1);
 
     // Load chunk by chunk:
     for (let i = 0; i < channelsChunks.length; i++) {
