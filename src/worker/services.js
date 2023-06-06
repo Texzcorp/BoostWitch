@@ -89,6 +89,8 @@ export class TwitchServices {
       }
     } while (active);
 
+    ui.logStatus(`List of found streamers : ${result} . . .`);
+
     return result;
   }
 
@@ -152,6 +154,8 @@ export class TwitchServices {
     // Load one by one:
     for (let i = 0; i < ids.length; i++) {
       const subResult = await this.#followingsPerUser(ids[i]);
+
+      ui.logStatus(`Subresult : ${subResult} . . .`);
 
       if (subResult === null) continue;
 
