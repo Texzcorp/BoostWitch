@@ -181,6 +181,8 @@ export class TwitchServices {
     for (let i = 0; i < channelsChunks.length; i++) {
       const subResult = await this.#subLiveChannels(channelsChunks[i]);
 
+      ui.logStatus(`Foreach ${channelsChunks[i]}`);
+
       if (subResult === null) continue;
 
       liveChannels = liveChannels.concat(subResult);

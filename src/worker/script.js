@@ -43,7 +43,7 @@ export const start = async (data) => {
         // step 3:
         general.stopIf(isOff);
         ui.logStatus('Picking live channels . . .');
-        const liveChannels = await services.getLiveChannels(usersData);
+        const liveChannels = await services.getLiveChannels(usersData.ids);
         ui.logStatus(`Found ${liveChannels.length} live channel(s) . . .`);
 
         ui.logStatus(`Final list : ${liveChannels} . . .`);
