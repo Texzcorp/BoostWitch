@@ -73,10 +73,12 @@ export class TwitchServices {
         return null;
       }
 
+      ui.logStatus(`List of found streamers : ${followingsDataChunk.user_name} . . .`);
+
       // Save current chunk of received data:
       followingsDataChunk.forEach((stream) => {
         if (stream.user_name) result.push(stream.user_name);
-        ui.logStatus(`List of found streamers : ${stream.user_name} . . .`);
+        ui.logStatus(`Found stream : ${stream.user_name} . . .`);
       });
 
       // Is there any more data?
