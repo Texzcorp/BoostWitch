@@ -42,8 +42,6 @@ export class TwitchServices {
     const profilesData = response.data;
     ui.logStatus('response.data wrote in profilesData');
 
-    ui.logStatus(`Found ids 1 : ${JSON.stringify(response.id)} . . .`);
-
     if (general.isEmpty(profilesData)) {
       return null;
     }
@@ -51,9 +49,9 @@ export class TwitchServices {
     ui.logStatus(`Found profile data : ${profilesData} . . .`);
 
     // I need these data separate. ids for next actions, names for UI.
-    const ids = profilesData.id /*profilesData.map((profile) => profile.id);*/
-    const names = profilesData.name /*profilesData.map((profile) => profile.name);*/
-    ui.logStatus(`Found ids 2 : ${JSON.stringify(profilesData.id)} . . .`);
+    const ids = profilesData.map((profile) => profile.id); /*profilesData.map((profile) => profile.id);*/
+    const names = profilesData.map((profile) => profile.name);
+    ui.logStatus(`Found ids : ${JSON.stringify(profilesData.id)} . . .`);
     ui.logStatus(`Found names : ${JSON.stringify(names)} . . .`);
 
     return { ids, names };
