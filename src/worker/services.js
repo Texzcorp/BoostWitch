@@ -51,7 +51,7 @@ export class TwitchServices {
     // I need these data separate. ids for next actions, names for UI.
     const ids = profilesData.map((profile) => profile.id); /*profilesData.map((profile) => profile.id);*/
     const names = profilesData.map((profile) => profile.name);
-    ui.logStatus(`Found ids : ${JSON.stringify(profilesData.id)} . . .`);
+    ui.logStatus(`Found ids : ${JSON.stringify(ids)} . . .`);
     ui.logStatus(`Found names : ${JSON.stringify(names)} . . .`);
 
     return { ids, names };
@@ -66,7 +66,7 @@ export class TwitchServices {
     // Api has 100 items return limit.
     // We are getting the full data chunk by chunk size of 100:
     do {
-      const response = await tw.apiRequest('https://api.twitch.tv/helix/streams', `game_id=${id}`) /*&first=100&after=${paginationKey}*/
+      const response = await tw.apiRequest('https://api.twitch.tv/helix/streams', `game_id=${id}&first=100&after=${paginationKey}`) /*&first=100&after=${paginationKey}*/
       const followingsDataChunk = response.data;
 
       if (general.isEmpty(followingsDataChunk)) {
@@ -76,6 +76,7 @@ export class TwitchServices {
       // Save current chunk of received data:
       followingsDataChunk.forEach((stream) => {
         if (stream.user_name) result.push(stream.user_name);
+        ui.logStatus(`List of found streamers : ${stream.user_name} . . .`);
       });
 
       // Is there any more data?
@@ -127,9 +128,7 @@ export class TwitchServices {
 
     // Load data chunk by chunk:
     for (let i = 0; i < usernames.length; i++) {
-      ui.logStatus('for (let) worked');
       const subResult = await this.#subProfilesInfo(usernames[i]);
-      ui.logStatus('Subprofiles info');
 
       if (subResult === null) continue;
 

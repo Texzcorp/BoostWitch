@@ -36,6 +36,7 @@ export const start = async (data) => {
         general.stopIf(isOff);
         ui.logStatus('Getting followings . . .');
         ui.blockSpyButton();
+        ui.logStatus('Spy button unlocked . . .');
         const followings = await services.getFollowings(usersData.ids);
         ui.logStatus(`Found ${followings.length} channel(s) . . .`);
 
